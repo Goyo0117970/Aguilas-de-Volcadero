@@ -102,7 +102,8 @@ main {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("logo\ aguilas\ blanco.jpeg") center / cover no-repeat;
+  background: url("logo\ aguilas\ blanco.jpeg") center / contain no-repeat;
+ /* background: url("logo\ aguilas\ blanco.jpeg") center / cover no-repeat;*/
   opacity: 0.3;
   z-index: 0;
 }
@@ -117,6 +118,47 @@ main {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
+/* ===== CARRUSEL 3D ===== */
+.carousel-container {
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%, -50%);
+  perspective: 1000px;
+  z-index: 5;
+}
+
+.carousel-3d {
+  position: relative;
+  width: 350px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: rotateCarousel 20s linear infinite;
+  
+}
+
+.carousel-3d img {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  left: 30px;
+  top: 30px;
+}
+
+/* POSICIONES CIRCULARES */
+.carousel-3d img:nth-child(1) { transform: rotateY(0deg) translateZ(220px); }
+.carousel-3d img:nth-child(2) { transform: rotateY(72deg) translateZ(220px); }
+.carousel-3d img:nth-child(3) { transform: rotateY(144deg) translateZ(220px); }
+.carousel-3d img:nth-child(4) { transform: rotateY(216deg) translateZ(220px); }
+.carousel-3d img:nth-child(5) { transform: rotateY(288deg) translateZ(220px); }
+
+@keyframes rotateCarousel {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
 
 /* ===== FOOTER ===== */
 .footer {
