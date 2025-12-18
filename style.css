@@ -22,69 +22,76 @@ main {
   position: fixed;
   top: 0;
   width: 100%;
-  background: white;
+  background-color: #ff9800; /* NARANJA */
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  background-color: #286bcf; /* AZUL */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
 .header-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 4rem; /* PADDING VISIBLE */
+  padding: 1rem 4rem;
   max-width: 1200px;
   margin: 0 auto;
 }
-.login-item {
-  margin-left: 2rem; /* separación respecto al menú */
-}
-
-.login-link {
-  background-color: #ff9800;
-  color: white !important;
-  padding: 0.5rem 1.2rem;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.login-link:hover {
-  background-color: #e68900;
-  transform: translateY(-2px);
-}
 
 .logo-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.4rem;
   font-weight: bold;
-  color: #f5f8fc;
+  color: #ffffff;
   text-decoration: none;
+}
+
+.logo-img {
+  width: 45px;
+  height: auto;
 }
 
 .nav-header ul {
   display: flex;
   list-style: none;
-  color: white;
-
 }
 
 .nav-header a {
   text-decoration: none;
-  color: #f8f2f2;
+  color: #ffffff;
   padding: 0.5rem 1rem;
   transition: box-shadow 0.3s;
 }
 
-/* sombra naranja al pasar el mouse */
 .nav-header a:hover {
-  box-shadow: 0 4px 0 #ff9800;
+  box-shadow: 0 4px 0 #ffffff;
 }
 
+.login-item {
+  margin-left: 2rem;
+}
 
+.login-link {
+  background-color: #286bcf;
+  color: #ffffff !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(120,120,120,0.6); /* SOMBRA GRIS */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.login-link:hover {
+  background-color: #1f57a6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(100,100,100,0.8);
+}
+
+/* ===== HERO ===== */
 .hero {
   position: relative;
-  min-height: calc(100vh - 70px); /* resta la altura del header */
-  padding-top: 70px;              /* espacio para el header fijo */
+  min-height: calc(100vh - 70px);
+  padding-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,8 +102,8 @@ main {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("neuro.jpg") center / cover no-repeat;
-  opacity: 0.35;
+  background: url("logo\ aguilas\ blanco.jpeg") center / cover no-repeat;
+  opacity: 0.3;
   z-index: 0;
 }
 
@@ -129,7 +136,7 @@ main {
 .icon {
   color: white;
   font-size: 32px;
-  display: inline-block;   /* 👈 IMPORTANTE */
+  display: inline-block;
   margin: 0 10px;
   transition: transform 0.25s ease;
 }
@@ -164,11 +171,20 @@ main {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .nav-header ul {
-    gap: 10px;
+  .header-wrap {
+    padding: 1rem 2rem;
   }
 
   .hero h1 {
     font-size: 2rem;
   }
 }
+```
+
+---
+
+✅ **Notas importantes:**
+
+* Coloca `aguila.png` en la misma carpeta que `index.html`
+* La imagen de fondo debe llamarse exactamente `equipo cancha entero.jpeg`
+* Header naranja + logo alineado + sombra gris solo en “Eventos”
