@@ -29,7 +29,7 @@ main {
 
 .header-wrap {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 1rem 4rem;
   max-width: 1200px;
@@ -37,14 +37,20 @@ main {
 }
 
 .logo-header {
+  position: absolute;   /* 👈 lo saca del flujo */
+  top: -1git add .0px;           /* 👈 lo sube fuera de la franja */
+  left: 20px;           /* esquina izquierda */
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   font-size: 1.4rem;
   font-weight: bold;
   color: #ffffff;
   text-decoration: none;
+  z-index: 2000;        /* por encima del header */
 }
+
+
 
 .logo-img {
   width: 45px;
@@ -94,7 +100,7 @@ main {
   padding-top: 70px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
 }
 
@@ -109,10 +115,20 @@ main {
 }
 
 .hero-content {
-  position: relative;
+ /* position: relative;
   z-index: 1;
-  color: #222;
+  color: #222; */
+
+  position: absolute;
+  top: 100px;        /* lo baja desde el header */
+  left: 0;
+  padding-left: 20px; /* 👈 padding para que no se salga */
+  text-align: left;
+  color: #1d08e0;
+  z-index: 2;
 }
+
+
 
 .hero h1 {
   font-size: 3rem;
@@ -133,7 +149,7 @@ main {
   width: 350px;
   height: 200px;
   transform-style: preserve-3d;
-  animation: rotateCarousel 20s linear infinite;
+  animation: rotateCarousel 40s linear infinite;
   
 }
 
