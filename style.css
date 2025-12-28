@@ -1,248 +1,342 @@
-/* ===== RESET ===== */
-* {
+*{
+  box-sizing:border-box;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+}
+:root{
+  --fire-intensity: 1;
 }
 
-/* ===== LAYOUT GENERAL ===== */
-body {
-  min-height: 100vh;
-  display: flex;
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+ /* background:#f4f4f4;*/
+  background: #ff9800;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== AREA SUPERIOR ===== */
+
+.hero{
+  height:220px;
+  background-image: url("equipo\ cancha\ semi.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  image-rendering: auto;
+  filter: contrast(1.05) brightness(1.07);
+
+  display:flex;
   flex-direction: column;
+  justify-content: flex-end;
+  align-items:center;
+  font-size:45px;
+  text-shadow:
+    0 2px 4px rgba(0,0,0,.9),
+    0 6px 15px rgba(0,0,0,.7);
+  font-weight:bold;
+  letter-spacing:2px;
+  color:#fff;
+  position: relative;
+  isolation: isolate;
+} 
+
+.circular-text{
+  position:absolute;
+  top:10px;
+  left:50%;
+  width:420px;
+  height:310px;
+  fill:#fff;
+  pointer-events:none;
+  animation: floatText 6s ease-in-out infinite;
+  transform: translateX(-50%);
+  z-index:2;
 }
 
-main {
-  flex: 1;
+.circular-text text{
+  fill:#ff9800;
+  font-size:30px;
+  dominant-baseline: middle;
+  letter-spacing:7px;
+  font-weight:900;
+  text-shadow:
+    0 2px 6px rgba(0,0,0,.9),
+    0 0 10px rgba(255,152,0,.6);
+}
+
+@keyframes floatText {
+  0%   { transform: translate(-50%, 0); }
+  50%  { transform: translate(-50%, -10px); }
+  100% { transform: translate(-50%, 0); }
+}
+
+.hero-title{
+  position:relative;
+  z-index:1;
+}
+
+.hero-text{
+  padding:14px 32px;
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.25)
+  );
+  border-radius:10px;
+  text-shadow:0 4px 10px rgba(0,0,0,1);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.45);
+  z-index:-1;
 }
 
 /* ===== HEADER ===== */
-.main-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #ff9800; /* NARANJA */
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+header{
+  position:sticky;
+  top:0;
+  background:transparent;
+  padding:0;
+  z-index:1000;
 }
 
-.header-wrap {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 1rem 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
+nav ul{
+  /*background-color: #ff9800;  */
+  background-color: hsl(22, 92%, 49%);
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin:0;
+  padding:20px 0;
 }
 
-.logo-header {
-  position: absolute;   /* 👈 lo saca del flujo */
-  top: -1git add .0px;           /* 👈 lo sube fuera de la franja */
-  left: 20px;           /* esquina izquierda */
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #ffffff;
-  text-decoration: none;
-  z-index: 2000;        /* por encima del header */
+nav a{
+  color:#300ef1;
+  text-decoration:none;   /* ← SIN RAYA */
+  font-weight:600;
+  transition:.3s;
 }
 
-
-
-.logo-img {
-  width: 45px;
-  height: auto;
+/* ===== EFECTO ELEGANTE (SOLO ESTE) ===== */
+nav a:hover{
+  color:#fff;
+  text-shadow:
+    0 0 6px rgba(255,255,255,.9),
+    0 0 14px rgba(255,255,255,.6);
 }
 
-.nav-header ul {
-  display: flex;
-  list-style: none;
+/* ===== CONTENIDO ===== */
+
+main{
+  padding:40px;
+  text-align:center;
+  flex:1;
 }
 
-.nav-header a {
-  text-decoration: none;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  transition: box-shadow 0.3s;
+/* ===== LOGIN ===== */
+.login-box{
+  position:relative;
+  max-width:360px;
+  margin:0 auto;
+  background:#fff;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  display:none;
 }
 
-.nav-header a:hover {
-  box-shadow: 0 4px 0 #ffffff;
+.close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  cursor:pointer;
+  font-size:18px;
+  color:#888;
 }
 
-.login-item {
-  margin-left: 2rem;
+.close:hover{
+  color:#000;
 }
 
-.login-link {
-  background-color: #286bcf;
-  color: #ffffff !important;
-  padding: 0.5rem 1.2rem;
-  border-radius: 4px;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(120,120,120,0.6); /* SOMBRA GRIS */
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+.login-box h2{
+  margin-bottom:20px;
 }
 
-.login-link:hover {
-  background-color: #1f57a6;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(100,100,100,0.8);
+.field{
+  position:relative;
+  margin-bottom:15px;
 }
 
-/* ===== HERO ===== */
-.hero {
-  position: relative;
-  min-height: calc(100vh - 70px);
-  padding-top: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
+.field input{
+  width:100%;
+  padding:10px 36px;
+  font-size:15px;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("logo\ aguilas\ blanco.jpeg") center / contain no-repeat;
- /* background: url("logo\ aguilas\ blanco.jpeg") center / cover no-repeat;*/
-  opacity: 0.3;
-  z-index: 0;
+.field span{
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
 }
 
-.hero-content {
- /* position: relative;
-  z-index: 1;
-  color: #222; */
-
-  position: absolute;
-  top: 100px;        /* lo baja desde el header */
-  left: 0;
-  padding-left: 20px; /* 👈 padding para que no se salga */
-  text-align: left;
-  color: #1d08e0;
-  z-index: 2;
+button{
+  width:100%;
+  padding:10px;
+  font-size:16px;
+  border:none;
+  background:#111;
+  color:#fff;
+  cursor:pointer;
+  margin-top:10px;
 }
 
-
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-/* ===== CARRUSEL 3D ===== */
-.carousel-container {
-  position: fixed;
-  left: 50px;
-  top: 50%;
-  transform: translateY(-50%, -50%);
-  perspective: 1000px;
-  z-index: 5;
+button:hover{
+  background:#333;
 }
 
-.carousel-3d {
-  position: relative;
-  width: 350px;
-  height: 200px;
-  transform-style: preserve-3d;
-  animation: rotateCarousel 40s linear infinite;
-  
+.message{
+  margin-top:10px;
+  color:red;
+  font-size:14px;
 }
-
-.carousel-3d img {
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  left: 30px;
-  top: 30px;
-}
-
-/* POSICIONES CIRCULARES */
-.carousel-3d img:nth-child(1) { transform: rotateY(0deg) translateZ(220px); }
-.carousel-3d img:nth-child(2) { transform: rotateY(72deg) translateZ(220px); }
-.carousel-3d img:nth-child(3) { transform: rotateY(144deg) translateZ(220px); }
-.carousel-3d img:nth-child(4) { transform: rotateY(216deg) translateZ(220px); }
-.carousel-3d img:nth-child(5) { transform: rotateY(288deg) translateZ(220px); }
-
-@keyframes rotateCarousel {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(360deg); }
-}
-
 
 /* ===== FOOTER ===== */
-.footer {
-  background: #286bcf;
-  padding: 30px 20px;
-  text-align: center;
+footer{
+  background:#ff9800;
+  color:#242222; 
+  padding:25px 10px;
+  margin-top:40px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  z-index:999;
 }
 
-.social-icon {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
-  margin-bottom: 15px;
+.footer-content{
+  max-width:1000px;
+  margin:auto;
+  text-align:center;
 }
 
-.icon {
-  color: white;
-  font-size: 32px;
-  display: inline-block;
-  margin: 0 10px;
-  transition: transform 0.25s ease;
+.social{
+  margin-bottom:10px;
 }
 
-.icon:hover {
-  transform: translateY(-6px);
+.icon{
+  display:inline-flex;
+  width:36px;
+  height:36px;
+  margin:0 10px;
+  align-items:center;
+  justify-content:center;
+  transition:.3s;
 }
 
-.footer-menu {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
-  margin-bottom: 15px;
+.icon svg{
+  width:100%;
+  height:100%;
+  fill:#fff;
 }
 
-.footer-menu a {
-  color: white;
-  text-decoration: none;
-  margin: 5px 12px;
-  opacity: 0.7;
+.icon:hover{
+  transform:scale(1.2);
 }
 
-.footer-menu a:hover {
-  opacity: 1;
+.icon.whatsapp svg{
+  fill:#25D366;
 }
 
-.text {
-  color: white;
-  font-size: 14px;
+.icon.facebook:hover svg{
+  fill:#1877F2;
+}
+.copyright{
+    color:#000;
+    margin-top: 20px;
+    font-size: 13px;
+    opacity: 0.85;
+}
+.footer-content{
+  position:relative;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .header-wrap {
-    padding: 1rem 2rem;
+.footer-logo{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.footer-logo img{
+  width:125px;        /* ajusta tamaño */
+  height:auto;
+  opacity:0.9;
+
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.3));
+}
+
+@media (max-width: 768px){
+
+  .hero{
+    height:180px;
+    font-size:28px;
   }
 
-  .hero h1 {
-    font-size: 2rem;
+  .circular-text{
+    width:300px;
+    height:220px;
+    top:0;
+  }
+
+  .circular-text text{
+    font-size:20px;
+    letter-spacing:4px;
+  }
+
+  nav ul{
+    gap:15px;
+    padding:15px 0;
+  }
+
+  nav a{
+    font-size:16px;
+  }
+
+  footer{
+    padding:15px 10px;
+  }
+
+  .icon{
+    width:30px;
+    height:30px;
+  }
+
+  main{
+    padding-bottom:140px;
   }
 }
-```
 
----
+@media (min-width: 769px) and (max-width: 1024px){
 
-✅ **Notas importantes:**
+  .hero{
+    height:200px;
+    font-size:36px;
+  }
 
-* Coloca `aguila.png` en la misma carpeta que `index.html`
-* La imagen de fondo debe llamarse exactamente `equipo cancha entero.jpeg`
-* Header naranja + logo alineado + sombra gris solo en “Eventos”
+  .circular-text{
+    width:360px;
+    height:260px;
+  }
+
+  nav a{
+    font-size:17px;
+  }
+}
